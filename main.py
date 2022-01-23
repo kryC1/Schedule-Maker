@@ -110,3 +110,87 @@ def is_busy_afternoon(course, index, busy):
             break
 
     return flag
+
+
+def assign_service_courses():
+    for i in range(len(serviceCourses)):
+        index = -1
+
+        for j in range(len(courseList)):
+            if courseList[j].courseCode == serviceCourses[i][0]:
+                index = j
+                break
+
+        day = decide_days(serviceCourses[i][1])
+
+        e_or_c = bool
+
+        if courseList[index].get_c_or_e() == 'E':
+            e_or_c = True
+        else:
+            e_or_c = False
+
+        time = serviceCourses[i][2].rstrip("\n")
+        if time == 'Afternoon':
+            if e_or_c:
+                if curriculum[day].afternoon.small1 == False:
+                    curriculum[day].afternoon.small1 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].afternoon.smallClassroom1Course = courseList[index]
+
+                elif curriculum[day].afternoon.small2 == False:
+                    curriculum[day].afternoon.small2 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].afternoon.smallClassroom2Course = courseList[index]
+
+                elif curriculum[day].afternoon.big1 == False:
+                    curriculum[day].afternoon.big1 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].afternoon.bigClassroom1Course = courseList[index]
+
+                elif curriculum[day].afternoon.big2 == False:
+                    curriculum[day].afternoon.big2 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].afternoon.bigClassroom2Course = courseList[index]
+            else:
+                if curriculum[day].afternoon.big1 == False:
+                    curriculum[day].afternoon.big1 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].afternoon.bigClassroom1Course = courseList[index]
+
+                elif curriculum[day].afternoon.big2 == False:
+                    curriculum[day].afternoon.big2 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].afternoon.bigClassroom2Course = courseList[index]
+
+        elif time == 'Morning':
+            if e_or_c:
+                if curriculum[day].morning.small1 == False:
+                    curriculum[day].morning.small1 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].morning.smallClassroom1Course = courseList[index]
+
+                elif curriculum[day].morning.small2 == False:
+                    curriculum[day].morning.small2 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].morning.smallClassroom2Course = courseList[index]
+
+                elif curriculum[day].morning.big1 == False:
+                    curriculum[day].morning.big1 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].morning.bigClassroom1Course = courseList[index]
+
+                elif curriculum[day].morning.big2 == False:
+                    curriculum[day].morning.big2 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].morning.bigClassroom2Course = courseList[index]
+            else:
+                if curriculum[day].morning.big1 == False:
+                    curriculum[day].morning.big1 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].morning.bigClassroom1Course = courseList[index]
+
+                elif curriculum[day].morning.big2 == False:
+                    curriculum[day].morning.big2 = True
+                    courseList[index].isAssigned = True
+                    curriculum[day].morning.bigClassroom2Course = courseList[index]
