@@ -330,8 +330,8 @@ if len(unAssigned) == 0:
 
         if curriculum[i].afternoon.small2 == True:
             print(curriculum[i].dayName + " Afternoon smallClassroom2 " + curriculum[i].afternoon.smallClassroom2Course.get_cr_id())
-    else:
-        print("There can't be a schedule under these conditions. Adding more classrooms can solve the problem.")
-        print("\nCourses that remain unassigned\n--------------------------")
-        for i in range(len(unAssigned)):
-            print(unAssigned[i])
+else:
+    print("There can't be a schedule under these conditions. Adding more classrooms can solve the problem.")
+    print("\nCourses that remain unassigned\n--------------------------")
+    for i in range(len(unAssigned)):
+        print(unAssigned[i])
