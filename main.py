@@ -6,7 +6,8 @@ with open("courses.csv", "r") as filestream:
     for line in filestream:
         current_line = line.split(";")
         courseList.append(classes.Courses(current_line[0], current_line[1], current_line[2],
-                                          current_line[3], current_line[4], current_line[5], current_line[6].rstrip("\n")))
+                                          current_line[3], current_line[4], current_line[5],
+                                          current_line[6].rstrip("\n")))
 
 curriculum = []
 curriculum.append(classes.Days('Monday'))
@@ -50,8 +51,9 @@ def decide_days(day):
         return 4
     else:
         return -1
+
     
-    def get_collision_morning(day, course):
+def get_collision_morning(day, course):
     flag = False
 
     if day.morning.big1 == True and day.morning.bigClassroom1Course.get_year() == course.get_year():
@@ -290,46 +292,46 @@ def assign_department_courses():
                         courseList[i].isAssigned = True
                         curriculum[index].afternoon.bigClassroom2Course = courseList[i]
                         
-        assign_service_courses()
-        assign_department_courses()
+assign_service_courses()
+assign_department_courses()
 
-        unAssigned = []
-        for i in range(len(courseList)):
-          if courseList[i].isAssigned == False:
-            unAssigned.append(courseList[i].courseName)
+unAssigned = []
+for i in range(len(courseList)):
+    if courseList[i].isAssigned == False:
+        unAssigned.append(courseList[i].courseName)
 
-       for i in range(len(classRooms)):
-        crName = classRooms[i].cr_name
-        crNumber = classRooms[i].cr_num
-        print(crName.rstrip("\n") + " " + crNumber.rstrip("\n"))
+for i in range(len(classRooms)):
+    crName = classRooms[i].cr_name
+    crNumber = classRooms[i].cr_num
+    print(crName.rstrip("\n") + " " + crNumber.rstrip("\n"))
 
-       if len(unAssigned) == 0:
-        for i in range(len(curriculum)):
-            if curriculum[i].morning.big1 == True:
-                print(curriculum[i].dayName + " Morning bigClassroom1 " + curriculum[i].morning.bigClassroom1Course.get_cr_id())
+if len(unAssigned) == 0:
+    for i in range(len(curriculum)):
+        if curriculum[i].morning.big1 == True:
+            print(curriculum[i].dayName + " Morning bigClassroom1 " + curriculum[i].morning.bigClassroom1Course.get_cr_id())
 
-            if curriculum[i].morning.big2 == True:
-                print(curriculum[i].dayName + " Morning bigClassroom2 " + curriculum[i].morning.bigClassroom2Course.get_cr_id())
+        if curriculum[i].morning.big2 == True:
+            print(curriculum[i].dayName + " Morning bigClassroom2 " + curriculum[i].morning.bigClassroom2Course.get_cr_id())
 
-            if curriculum[i].morning.small1 == True:
-                print(curriculum[i].dayName + " Morning smallClassroom1 " + curriculum[i].morning.smallClassroom1Course.get_cr_id())
+        if curriculum[i].morning.small1 == True:
+            print(curriculum[i].dayName + " Morning smallClassroom1 " + curriculum[i].morning.smallClassroom1Course.get_cr_id())
 
-            if curriculum[i].morning.small2 == True:
-                print(curriculum[i].dayName + " Morning smallClassroom2 " + curriculum[i].morning.smallClassroom2Course.get_cr_id())
+        if curriculum[i].morning.small2 == True:
+            print(curriculum[i].dayName + " Morning smallClassroom2 " + curriculum[i].morning.smallClassroom2Course.get_cr_id())
 
-            if curriculum[i].afternoon.big1 == True:
-                print(curriculum[i].dayName + " Afternoon bigClassroom1 " + curriculum[i].afternoon.bigClassroom1Course.get_cr_id())
+        if curriculum[i].afternoon.big1 == True:
+            print(curriculum[i].dayName + " Afternoon bigClassroom1 " + curriculum[i].afternoon.bigClassroom1Course.get_cr_id())
 
-            if curriculum[i].afternoon.big2 == True:
-                print(curriculum[i].dayName + " Afternoon bigClassroom2 " + curriculum[i].afternoon.bigClassroom2Course.get_cr_id())
+        if curriculum[i].afternoon.big2 == True:
+            print(curriculum[i].dayName + " Afternoon bigClassroom2 " + curriculum[i].afternoon.bigClassroom2Course.get_cr_id())
 
-            if curriculum[i].afternoon.small1 == True:
-                print(curriculum[i].dayName + " Afternoon smallClassroom1 " + curriculum[i].afternoon.smallClassroom1Course.get_cr_id())
+        if curriculum[i].afternoon.small1 == True:
+            print(curriculum[i].dayName + " Afternoon smallClassroom1 " + curriculum[i].afternoon.smallClassroom1Course.get_cr_id())
 
-            if curriculum[i].afternoon.small2 == True:
-                print(curriculum[i].dayName + " Afternoon smallClassroom2 " + curriculum[i].afternoon.smallClassroom2Course.get_cr_id())
-            else:
-            print("There can't be a schedule under these conditions. Adding more classrooms can solve the problem.")
-            print("\nCourses that remain unassigned\n--------------------------")
-            for i in range(len(unAssigned)):
-                print(unAssigned[i])
+        if curriculum[i].afternoon.small2 == True:
+            print(curriculum[i].dayName + " Afternoon smallClassroom2 " + curriculum[i].afternoon.smallClassroom2Course.get_cr_id())
+    else:
+        print("There can't be a schedule under these conditions. Adding more classrooms can solve the problem.")
+        print("\nCourses that remain unassigned\n--------------------------")
+        for i in range(len(unAssigned)):
+            print(unAssigned[i])
