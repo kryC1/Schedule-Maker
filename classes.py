@@ -14,7 +14,7 @@ class Courses:
         self.c_or_e = c_or_e
         self.d_or_s = d_or_s
         self.instructor = instructor
-        self isAssigned = False
+        self.isAssigned = False
 
     def get_c_or_e(self):
         return self.c_or_e
