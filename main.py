@@ -194,8 +194,9 @@ def assign_service_courses():
                     curriculum[day].morning.big2 = True
                     courseList[index].isAssigned = True
                     curriculum[day].morning.bigClassroom2Course = courseList[index]
+
                     
-    def assign_department_courses():
+def assign_department_courses():
     for i in range(len(courseList)):
         if courseList[i].isAssigned == True:
             continue
