@@ -195,7 +195,7 @@ def assign_service_courses():
                     courseList[index].isAssigned = True
                     curriculum[day].morning.bigClassroom2Course = courseList[index]
                     
-                    def assign_department_courses():
+    def assign_department_courses():
     for i in range(len(courseList)):
         if courseList[i].isAssigned == True:
             continue
@@ -288,3 +288,47 @@ def assign_service_courses():
                         curriculum[index].afternoon.big2 = True
                         courseList[i].isAssigned = True
                         curriculum[index].afternoon.bigClassroom2Course = courseList[i]
+                        
+        assign_service_courses()
+        assign_department_courses()
+
+        unAssigned = []
+        for i in range(len(courseList)):
+          if courseList[i].isAssigned == False:
+            unAssigned.append(courseList[i].courseName)
+
+       for i in range(len(classRooms)):
+        crName = classRooms[i].cr_name
+        crNumber = classRooms[i].cr_num
+        print(crName.rstrip("\n") + " " + crNumber.rstrip("\n"))
+
+       if len(unAssigned) == 0:
+        for i in range(len(curriculum)):
+            if curriculum[i].morning.big1 == True:
+                print(curriculum[i].dayName + " Morning bigClassroom1 " + curriculum[i].morning.bigClassroom1Course.get_cr_id())
+
+            if curriculum[i].morning.big2 == True:
+                print(curriculum[i].dayName + " Morning bigClassroom2 " + curriculum[i].morning.bigClassroom2Course.get_cr_id())
+
+            if curriculum[i].morning.small1 == True:
+                print(curriculum[i].dayName + " Morning smallClassroom1 " + curriculum[i].morning.smallClassroom1Course.get_cr_id())
+
+            if curriculum[i].morning.small2 == True:
+                print(curriculum[i].dayName + " Morning smallClassroom2 " + curriculum[i].morning.smallClassroom2Course.get_cr_id())
+
+            if curriculum[i].afternoon.big1 == True:
+                print(curriculum[i].dayName + " Afternoon bigClassroom1 " + curriculum[i].afternoon.bigClassroom1Course.get_cr_id())
+
+            if curriculum[i].afternoon.big2 == True:
+                print(curriculum[i].dayName + " Afternoon bigClassroom2 " + curriculum[i].afternoon.bigClassroom2Course.get_cr_id())
+
+            if curriculum[i].afternoon.small1 == True:
+                print(curriculum[i].dayName + " Afternoon smallClassroom1 " + curriculum[i].afternoon.smallClassroom1Course.get_cr_id())
+
+            if curriculum[i].afternoon.small2 == True:
+                print(curriculum[i].dayName + " Afternoon smallClassroom2 " + curriculum[i].afternoon.smallClassroom2Course.get_cr_id())
+            else:
+            print("There can't be a schedule under these conditions. Adding more classrooms can solve the problem.")
+            print("\nCourses that remain unassigned\n--------------------------")
+            for i in range(len(unAssigned)):
+                print(unAssigned[i])
